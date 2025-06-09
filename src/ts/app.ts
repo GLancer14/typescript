@@ -11,3 +11,7 @@ cart.add(new MusicAlbum(1008, 'Meteora', 'Linkin Park', 900));
 cart.add(new Movie(1011, 'Avengers', 250, 2012, 'USA', '"Avengers Assemble!"', ['fantastic tales', 'action', 'fantasy', 'adventure'], '137 min. / 02:17'));
 
 console.log(cart.items);
+cart.delete(1001);
+console.log(cart.items);
+console.log(cart.calculateFinalPrice());
+console.log(cart.calculateFinalPriceWithDiscount(7.5));
