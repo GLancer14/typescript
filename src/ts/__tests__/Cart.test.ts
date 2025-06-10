@@ -2,6 +2,7 @@ import Cart from '../service/Cart';
 import Movie from '../domain/Movie';
 import Book from '../domain/Book';
 import MusicAlbum from '../domain/MusicAlbum';
+import Cellphone from '../domain/Cellphone';
 
 test('new card should be empty', () => {
   const cart = new Cart();
@@ -21,7 +22,9 @@ test('calculate price without discount', () => {
   cart.add(new Book(1001, 'War and Piece', 'Leo Tolstoy', 2000, 1225));
   cart.add(new MusicAlbum(1008, 'Meteora', 'Linkin Park', 900));
   cart.add(new Movie(1011, 'Avengers', 250, 2012, 'USA', '"Avengers Assemble!"', ['fantastic tales', 'action', 'fantasy', 'adventure'], '137 min. / 02:17'));
-  expect(cart.calculateFinalPrice()).toBe(3150);
+  cart.addEnumerable(new Cellphone(9982, 'iPhone 14', 54999, 6, 128, 'iOS 15'));
+  cart.addEnumerable(new Cellphone(9982, 'iPhone 14', 54999, 6, 128, 'iOS 15'));
+  expect(cart.calculateFinalPrice()).toBe(113148);
 });
 
 test('calculate price with discount', () => {
@@ -29,7 +32,9 @@ test('calculate price with discount', () => {
   cart.add(new Book(1001, 'War and Piece', 'Leo Tolstoy', 2000, 1225));
   cart.add(new MusicAlbum(1008, 'Meteora', 'Linkin Park', 900));
   cart.add(new Movie(1011, 'Avengers', 250, 2012, 'USA', '"Avengers Assemble!"', ['fantastic tales', 'action', 'fantasy', 'adventure'], '137 min. / 02:17'));
-  expect(cart.calculateFinalPriceWithDiscount(10)).toBe(2835);
+  cart.addEnumerable(new Cellphone(9982, 'iPhone 14', 54999, 6, 128, 'iOS 15'));
+  cart.addEnumerable(new Cellphone(9982, 'iPhone 14', 54999, 6, 128, 'iOS 15'));
+  expect(cart.calculateFinalPriceWithDiscount(7.5)).toBe(104661.9);
 });
 
 test('delete item from cart', () => {
