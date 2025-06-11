@@ -9,8 +9,8 @@ export default class Cart {
 
     addEnumerable(item: Buyable): void {
       const earlySelectedItem = this._items.find(value => value.id === item.id);
-      if (earlySelectedItem) {
-        earlySelectedItem.amount!++;
+      if (earlySelectedItem && earlySelectedItem.amount) {
+        earlySelectedItem.amount++;
       } else {
         this.add(item);
         item.amount = 1;
@@ -39,6 +39,10 @@ export default class Cart {
 
     deleteEnumerable(id: number): void {
       const deletingItem = this._items.find(item => item.id === id);
-      (deletingItem!.amount === 1) ? this.delete(id) : deletingItem!.amount!--;
+      if (!deletingItem || deletingItem.amount === undefined) {
+        throw new Error("Товар не найден или его количество не задано!");
+      }
+
+      (deletingItem.amount === 1) ? this.delete(id) : deletingItem.amount--;
     }
 }

@@ -25,3 +25,8 @@ test('delete last enumerable item from cart', () => {
   cart.deleteEnumerable(9982);
   expect(cart.items).not.toContainEqual(cellphone);
 });
+
+test('delete not existing enumerable item from cart', () => {
+  const cart = new Cart();
+  expect(() => cart.deleteEnumerable(9982)).toThrow();
+});
